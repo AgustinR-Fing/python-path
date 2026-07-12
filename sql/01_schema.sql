@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS users (
+	id SERIAL PRIMARY KEY,
+	username TEXT UNIQUE NOT NULL,
+	email TEXT UNIQUE NOT NULL, 
+	created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+	id SERIAL PRIMARY KEY,
+	title TEXT NOT NULL, 
+	description TEXT,
+	done BOOLEAN DEFAULT false, 
+	created_at TIMESTAMP DEFAULT NOW(),
+	user_id INTEGER REFERENCES users(id)
+);
+	
